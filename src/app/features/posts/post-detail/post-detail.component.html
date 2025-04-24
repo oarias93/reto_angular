@@ -1,0 +1,19 @@
+<div class="post-detail-container">
+  <!-- Estado de Loading -->
+  <div *ngIf="apiState.loading" class="loading-state">
+    <div class="spinner"></div>
+    <p>Cargando post...</p>
+  </div>
+
+  <!-- Estado de Error -->
+  <div *ngIf="apiState.error" class="error-state">
+    <p>{{ apiState.error }}</p>
+    <button (click)="loadPost()">Reintentar</button>
+  </div>
+
+  <div *ngIf="post && !apiState.loading && !apiState.error" class="post-card">
+    <h2>{{ post.title }}</h2>
+    <p>{{ post.body }}</p>
+    <button (click)="goBack()" class="back-button">Volver</button>
+  </div>
+</div>
