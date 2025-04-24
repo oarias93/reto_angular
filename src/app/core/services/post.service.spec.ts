@@ -72,4 +72,40 @@ describe('PostService', () => {
     });
   });
 
+
+  // Prueba 3: Obtener un post por ID exitosamente
+  it('should fetch a single post by ID', () => {
+    const mockPost: Post = {
+      id: 1,
+      userId: 1,
+      title: 'Test Post',
+      body: 'Test Body'
+    };
+
+    service.getPostById(1).subscribe((post) => {
+      expect(post).toEqual(mockPost); // Verificamos el post individual
+    });
+
+    const req = httpMock.expectOne(`${service['apiUrl']}/1`);
+    expect(req.request.method).toBe('GET');
+    req.flush(mockPost);
+  });
+
+  // Prueba 4: Manejo de errores al obtener un post por ID
+  it('should handle 404 error when fetching a post', () => {
+    const errorMessage = 'Error 404: Not Found';
+
+    service.getPostById(999).subscribe({
+      error: (err) => {
+        expect(err.message).toContain('Error al cargar los datos');
+      },
+    });
+
+    const req = httpMock.expectOne(`${service['apiUrl']}/999`);
+    req.flush(errorMessage, {
+      status: 404,
+      statusText: 'Not Found'
+    });
+  });
+
 });

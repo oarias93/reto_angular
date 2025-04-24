@@ -4,9 +4,3 @@ export interface Post {
   title: string;  // Título del post
   body: string;   // Contenido del post
 }
-
-export type ApiState<T> = {
-  loading: boolean;
-  data?: T;
-  error?: string;
-};
