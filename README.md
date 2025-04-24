@@ -1,59 +1,103 @@
-# PruebaTecnicaApp
+# Prueba Técnica Frontend
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.4.
+Interfaz web simple que consuma una API pública (JSONPlaceholder) para mostrar posts y sus detalles.
 
-## Development server
+---
 
-To start a local development server, run:
+## **Características**
+- Listado de posts
+- Vista detallada de cada post
+- Manejo de estados (loading, error)
+- Diseño responsive con SCSS  
+- Pruebas unitarias
 
+---
+
+## **Tecnologías Utilizadas**
+- Angular 19
+- TypeScript
+- RxJS
+- SCSS
+- Karma/Jasmine (testing)
+
+---
+
+## **Requisitos previos**
+- Instalacion Node JS
+- Instalacion Angular 19
+  
+---
+
+## **Instalación y ejecución**
 ```bash
+# Clonar el repositorio en tu equipo local
+git clone https://github.com/oarias93/reto_angular.git
+
+# Entrar a la carpeta
+cd pruebaTecnica-app
+
+# Instalar dependencias
+npm install
+
+# Iniciar servidor de desarrollo
 ng serve
+
+# Abrir en el navegador
+http://localhost:4200
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+---
 
-## Code scaffolding
+## **Descripción del proyecto y arquitectura**
+Aplicación frontend desarrollada con Angular 19 que consume la API pública JSONPlaceholder para mostrar un listado de posts y sus detalles. El proyecto demuestra:
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+- Consumo de API REST con HttpClient
+- Navegación entre vistas (listado / detalle)
+- Manejo de estados (carga, error)
+- Implementación de pruebas unitarias (servicio y componente de lista)
 
+## **Arquitectura**
+src/
+├── app/
+│   ├── core/
+│   │   ├── services/         -> Lógica de conexión a API
+│   │   └── models/           -> Interfaces
+│   ├── features/
+│   │   └── posts/
+│   │       ├── post-list/    -> Lista de posts
+│   │       └── post-detail/  -> Detalle de post
+│   └── app.config.ts         -> Configuracion  General
+│   └── app.routes.ts         -> Rutas (Standalone)
+
+---
+
+## **Decisiones Técnicas**
+- **Angular o Vue**: Aunque el reto mencionaba Vue, elegi hacer la prueba en angular por mi experiencia y por la robustez del mismo, al igual que vue maneja TypeScript, y con esto evidencia el manejo del mismo, el cual resaltaron es de vital importancia para el proceso de selección.
+- **Servicios y modelos separados**: Nos permiten mantener una separación clara entre lógica de negocio y componentes visuales.
+- **Manejo de errores**: Cada componente muestra loading, errores o estado vacío según corresponda.
+- **Pruebas unitarias**: alidan el comportamiento de los servicios y componentes con gran cobertura del desarrollo en general
+- **Estructura HMTL y SCSS**: SCSS en lugar de CSS plano, para mantener estilos organizados y adaptables con media queries. Adicional maquetacion con uso de clases basadas en metodologia BEM para darle mayor claridad, interfaz sencilla pero bonita y agradable a la vist del usuario
+
+---
+
+## **Pruebas unitarias**
+El proyecto tiene cobertura ≥ 60% como se solicita en el reto. Se validan:
+
+- Servicio de conexión (PostService)
+- Componente de listado (PostListComponent)
+ 
+**Ejecutar tests:**
 ```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
+cd pruebaTecnica-app
 ng test
 ```
 
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
+**Ver cobertura:**
 ```bash
-ng e2e
+cd pruebaTecnica-app
+ng test --code-coverage
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+---
 
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+### Desarrollado por @oarias93 / www.linkedin.com/in/oscared1993
