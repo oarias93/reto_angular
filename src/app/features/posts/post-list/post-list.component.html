@@ -1,0 +1,33 @@
+<div class="post-list-container">
+  <!-- Estado de Loading -->
+  <div *ngIf="apiState.loading" class="loading-state">
+    <div class="spinner"></div>
+    <p>Cargando posts...</p>
+  </div>
+
+  <!-- Estado de Error -->
+  <div *ngIf="apiState.error" class="error-state">
+    <p>{{ apiState.error }}</p>
+    <button (click)="loadPosts()">Reintentar</button>
+  </div>
+
+  <!-- Estado Exitoso -->
+  <table *ngIf="!apiState.loading && !apiState.error">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Título</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let post of posts; trackBy: trackByPostId">
+        <td>{{ post.id }}</td>
+        <td>{{ post.title }}</td>
+        <td>
+          <a class="table_boton" [routerLink]="['/posts', post.id]">Ver Detalle</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
